@@ -913,10 +913,10 @@ static CompanyID GetPreviewCompany(Engine *e)
 static bool IsVehicleTypeDisabled(VehicleType type, bool ai)
 {
 	switch (type) {
-		case VEH_TRAIN:    return _settings_game.vehicle.max_trains == 0   || (ai && _settings_game.ai.ai_disable_veh_train);
-		case VEH_ROAD:     return _settings_game.vehicle.max_roadveh == 0  || (ai && _settings_game.ai.ai_disable_veh_roadveh);
-		case VEH_SHIP:     return _settings_game.vehicle.max_ships == 0    || (ai && _settings_game.ai.ai_disable_veh_ship);
-		case VEH_AIRCRAFT: return _settings_game.vehicle.max_aircraft == 0 || (ai && _settings_game.ai.ai_disable_veh_aircraft);
+		case VEH_TRAIN:    return _settings_game.vehicle.train_type_isdisabled   || (ai && _settings_game.ai.ai_disable_veh_train);
+		case VEH_ROAD:     return _settings_game.vehicle.roadveh_type_isdisabled || (ai && _settings_game.ai.ai_disable_veh_roadveh);
+		case VEH_SHIP:     return _settings_game.vehicle.ship_type_isdisabled    || (ai && _settings_game.ai.ai_disable_veh_ship);
+		case VEH_AIRCRAFT: return _settings_game.vehicle.roadveh_type_isdisabled || (ai && _settings_game.ai.ai_disable_veh_aircraft);
 
 		default: NOT_REACHED();
 	}

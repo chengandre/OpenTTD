@@ -67,7 +67,12 @@ void AgeVehicle(Vehicle *v);
 void RunVehicleCalendarDayProc();
 void VehicleEnteredDepotThisTick(Vehicle *v);
 
-UnitID GetFreeUnitNumber(VehicleType type);
+UnitID GetFreeUnitNumber(VehicleType type, uint8_t subtype = 0);
+uint GetRoadVehBusNumber(CompanyID c);
+uint GetRoadVehTruckNumber(CompanyID c);
+uint GetHelicopterNumber(CompanyID c);
+uint GetAirplaneNumber(CompanyID c);
+uint GetTrainSubtypeNumber(CompanyID c, EngineClass ec);
 
 void VehicleEnterDepot(Vehicle *v);
 

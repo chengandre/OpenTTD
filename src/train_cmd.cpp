@@ -979,7 +979,9 @@ static CommandCost CheckNewTrain(Train *original_dst, Train *dst, Train *origina
 
 	/* Get a free unit number and check whether it's within the bounds.
 	 * There will always be a maximum of one new train. */
-	if (GetFreeUnitNumber(VEH_TRAIN) <= _settings_game.vehicle.max_trains) return CommandCost();
+	if (!_settings_game.vehicle.train_type_isdisabled && GetFreeUnitNumber(VEH_TRAIN, RailVehInfo(src->engine_type)->engclass) <= Company::Get(src->owner)->settings.vehicle.max_trains) {
+		return CommandCost();
+	}
 
 	return_cmd_error(STR_ERROR_TOO_MANY_VEHICLES_IN_GAME);
 }

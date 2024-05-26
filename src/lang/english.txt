@@ -1785,15 +1785,68 @@ STR_CONFIG_SETTING_SOUND_VEHICLE_HELPTEXT                       :Play sound effe
 STR_CONFIG_SETTING_SOUND_AMBIENT                                :Ambient: {STRING2}
 STR_CONFIG_SETTING_SOUND_AMBIENT_HELPTEXT                       :Play ambient sounds of landscape, industries and towns
 
+STR_CONFIG_SETTING_TRAIN_TYPE_ISDISABLED                        :Trains limitations are disabled: {STRING2}
+STR_CONFIG_SETTING_TRAIN_TYPE_ISDISABLED_HELPTEXT               :When disabled, limits are imposed on train purchases.
 STR_CONFIG_SETTING_MAX_TRAINS                                   :Maximum number of trains per company: {STRING2}
 STR_CONFIG_SETTING_MAX_TRAINS_HELPTEXT                          :Maximum number of trains that a company can have
 
+STR_CONFIG_SETTING_MAX_STEAM_ENGINE_ISENABLED                   :Limitations on trains with steam engine are enabled: {STRING2}
+STR_CONFIG_SETTING_MAX_STEAM_ENGINE_ISENABLED_HELPTEXT          :When enabled, steam engine specific purchasing limitations will be imposed.
+STR_CONFIG_SETTING_MAX_STEAM_ENGINE_TRAINS                      :Maximum number of trains with steam engine per company: {STRING2}
+STR_CONFIG_SETTING_MAX_STEAM_ENGINE_TRAINS_HELPTEXT             :Maximum number of trains with steam engine that a company can have
+
+STR_CONFIG_SETTING_MAX_DIESEL_ENGINE_ISENABLED                  :Limitations on trains with diesel engine are enabled: {STRING2}
+STR_CONFIG_SETTING_MAX_DIESEL_ENGINE_ISENABLED_HELPTEXT         :When enabled, diesel engine specific purchasing limitations will be imposed.
+STR_CONFIG_SETTING_MAX_DIESEL_ENGINE_TRAINS                     :Maximum number of trains with diesel engine per company: {STRING2}
+STR_CONFIG_SETTING_MAX_DIESEL_ENGINE_TRAINS_HELPTEXT            :Maximum number of trains with diesel engine that a company can have
+
+STR_CONFIG_SETTING_MAX_ELECTRIC_ENGINE_ISENABLED                :Limitations on trains with electric engine are enabled: {STRING2}
+STR_CONFIG_SETTING_MAX_ELECTRIC_ENGINE_ISENABLED_HELPTEXT       :When enabled, electric engine specific purchasing limitations will be imposed.
+STR_CONFIG_SETTING_MAX_ELECTRIC_ENGINE_TRAINS                   :Maximum number of trains with electric engine per company: {STRING2}
+STR_CONFIG_SETTING_MAX_ELECTRIC_ENGINE_TRAINS_HELPTEXT          :Maximum number of trains with electric engine that a company can have
+
+STR_CONFIG_SETTING_MAX_MONORAIL_ENGINE_ISENABLED                :Limitations on trains with monorail engine are enabled: {STRING2}
+STR_CONFIG_SETTING_MAX_MONORAIL_ENGINE_ISENABLED_HELPTEXT       :When enabled, monorail engine specific purchasing limitations will be imposed.
+STR_CONFIG_SETTING_MAX_MONORAIL_ENGINE_TRAINS                   :Maximum number of trains with monorail engine per company: {STRING2}
+STR_CONFIG_SETTING_MAX_MONORAIL_ENGINE_TRAINS_HELPTEXT          :Maximum number of trains with monorail engine that a company can have
+
+STR_CONFIG_SETTING_MAX_MAGLEV_ENGINE_ISENABLED                  :Limitations on trains with maglev engine are enabled: {STRING2}
+STR_CONFIG_SETTING_MAX_MAGLEV_ENGINE_ISENABLED_HELPTEXT         :When enabled, maglev engine specific purchasing limitations will be imposed.
+STR_CONFIG_SETTING_MAX_MAGLEV_ENGINE_TRAINS                     :Maximum number of trains with maglev engine per company: {STRING2}
+STR_CONFIG_SETTING_MAX_MAGLEV_ENGINE_TRAINS_HELPTEXT            :Maximum number of trains with maglev engine that a company can have
+
+STR_CONFIG_SETTING_ROAD_VEHICLE_TYPE_ISDISABLED                 :Road vehicles limitations are disabled: {STRING2}
+STR_CONFIG_SETTING_ROAD_VEHICLE_TYPE_ISDISABLED_HELPTEXT        :When disabled, limits are imposed on road vehicle purchases.
 STR_CONFIG_SETTING_MAX_ROAD_VEHICLES                            :Maximum number of road vehicles per company: {STRING2}
 STR_CONFIG_SETTING_MAX_ROAD_VEHICLES_HELPTEXT                   :Maximum number of road vehicles that a company can have
 
+STR_CONFIG_SETTING_MAX_TRUCK_TYPE_ISENABLED                     :Truck limitations are enabled: {STRING2}
+STR_CONFIG_SETTING_MAX_TRUCK_TYPE_ISENABLED_HELPTEXT            :When enabled, truck specific purchasing limitations will be imposed.
+STR_CONFIG_SETTING_MAX_ROAD_TRUCKS                              :Maximum number of trucks per company: {STRING2}
+STR_CONFIG_SETTING_MAX_ROAD_TRUCKS_HELPTEXT                     :Maximum number of trucks that a company can have
+
+STR_CONFIG_SETTING_MAX_BUS_TYPE_ISENABLED                       :Bus limitations are enabled: {STRING2}
+STR_CONFIG_SETTING_MAX_BUS_TYPE_ISENABLED_HELPTEXT              :When enabled, bus specific purchasing limitations will be imposed.
+STR_CONFIG_SETTING_MAX_ROAD_BUSES                               :Maximum number of road buses per company: {STRING2}
+STR_CONFIG_SETTING_MAX_ROAD_BUSES_HELPTEXT                      :Maximum number of road buses that a company can have
+
+STR_CONFIG_SETTING_AIRCRAFT_TYPE_ISDISABLED                     :Aircraft limitations are disabled: {STRING2}
+STR_CONFIG_SETTING_AIRCRAFT_TYPE_ISDISABLED_HELPTEXT            :When enabled, aircraft specific purchasing limitations will be imposed.
 STR_CONFIG_SETTING_MAX_AIRCRAFT                                 :Maximum number of aircraft per company: {STRING2}
 STR_CONFIG_SETTING_MAX_AIRCRAFT_HELPTEXT                        :Maximum number of aircraft that a company can have
 
+STR_CONFIG_SETTING_MAX_AIRPLANES_TYPE_ISENABLED                 :Airplane limitations are enabled: {STRING2}
+STR_CONFIG_SETTING_MAX_AIRPLANES_TYPE_ISENABLED_HELPTEXT        :When enabled, airplane specific purchasing limitations will be imposed.
+STR_CONFIG_SETTING_MAX_AIRPLANES                                :Maximum number of airplanes per company: {STRING2}
+STR_CONFIG_SETTING_MAX_AIRPLANES_HELPTEXT                       :Maximum number of airplanes that a company can have
+
+STR_CONFIG_SETTING_MAX_HELICOPTER_TYPE_ISENABLED                :Helicopter limitations are enabled: {STRING2}
+STR_CONFIG_SETTING_MAX_HELICOPTER_TYPE_ISENABLED_HELPTEXT       :When enabled, helicopter specific purchasing limitations will be imposed.
+STR_CONFIG_SETTING_MAX_HELICOPTERS                              :Maximum number of helicopters per company: {STRING2}
+STR_CONFIG_SETTING_MAX_HELICOPTERS_HELPTEXT                     :Maximum number of helicopters that a company can have
+
+STR_CONFIG_SETTING_SHIP_TYPE_ISDISABLED                         :Ships are disabled: {STRING2}
+STR_CONFIG_SETTING_SHIP_TYPE_ISDISABLED_HELPTEXT                :When disabled, limits are imposed on ship purchases.
 STR_CONFIG_SETTING_MAX_SHIPS                                    :Maximum number of ships per company: {STRING2}
 STR_CONFIG_SETTING_MAX_SHIPS_HELPTEXT                           :Maximum number of ships that a company can have
 

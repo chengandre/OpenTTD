@@ -60,6 +60,7 @@
 #include "timer/timer_game_calendar.h"
 #include "timer/timer_game_economy.h"
 #include "timer/timer_game_tick.h"
+#include "cargo_type.h"
 
 #include "table/strings.h"
 
@@ -1884,27 +1885,142 @@ void FreeUnitIDGenerator::ReleaseID(UnitID index)
 	ClrBit(this->used_bitmap[index / BITMAP_SIZE], index % BITMAP_SIZE);
 }
 
+uint GetRoadVehBusNumber(CompanyID c)
+{
+	uint bus_count = 0;
+	for (RoadVehicle *rv : RoadVehicle::Iterate()) {
+		if (rv->owner == c && rv->IsBus()) bus_count++;
+	}
+
+	return bus_count;
+}
+
+uint GetRoadVehTruckNumber(CompanyID c)
+{
+	uint truck_count = 0;
+	for (RoadVehicle *rv : RoadVehicle::Iterate()) {
+		if (rv->owner == c && !(rv->IsBus())) truck_count++;
+	}
+
+	return truck_count;
+}
+
+uint GetHelicopterNumber(CompanyID c)
+{
+	uint helicopter_count = 0;
+	for (Aircraft *a : Aircraft::Iterate()) {
+		if (a->owner == c && a->subtype == AIR_HELICOPTER) helicopter_count++;
+	}
+
+	return helicopter_count;
+}
+
+uint GetAirplaneNumber(CompanyID c)
+{
+	uint airplane_count = 0;
+	for (Aircraft *a : Aircraft::Iterate()) {
+		if (a->owner == c && a->subtype != AIR_HELICOPTER) airplane_count++;
+	}
+
+	return airplane_count;
+}
+
+uint GetTrainSubtypeNumber(CompanyID c, EngineClass ec) {
+	uint train_subtype_count = 0;
+	for (Train *w : Train::Iterate()) {
+		if (w->owner == c && w->First() == w) {
+			for (Train *u = w; u != nullptr; u = u->Next()) {
+				if (HasBit(u->subtype, GVSF_ENGINE) && Engine::Get(w->engine_type)->u.rail.engclass == ec) {
+					train_subtype_count++;
+				}
+			}
+		}
+	}
+
+	return train_subtype_count;
+}
+
 /**
  * Get an unused unit number for a vehicle (if allowed).
  * @param type Type of vehicle
  * @return A unused unit number for the given type of vehicle if it is allowed to build one, else \c UINT16_MAX.
  */
-UnitID GetFreeUnitNumber(VehicleType type)
+UnitID GetFreeUnitNumber(VehicleType type, uint8_t subtype)
 {
 	/* Check whether it is allowed to build another vehicle. */
 	uint max_veh;
+	const Company *c = Company::Get(_current_company);
 	switch (type) {
-		case VEH_TRAIN:    max_veh = _settings_game.vehicle.max_trains;   break;
-		case VEH_ROAD:     max_veh = _settings_game.vehicle.max_roadveh;  break;
-		case VEH_SHIP:     max_veh = _settings_game.vehicle.max_ships;    break;
-		case VEH_AIRCRAFT: max_veh = _settings_game.vehicle.max_aircraft; break;
+		case VEH_TRAIN:    max_veh = _settings_game.vehicle.train_type_isdisabled    ? 0 : c->settings.vehicle.max_trains;   break;
+		case VEH_ROAD:     max_veh = _settings_game.vehicle.roadveh_type_isdisabled  ? 0 : c->settings.vehicle.max_roadveh;  break;
+		case VEH_SHIP:     max_veh = _settings_game.vehicle.ship_type_isdisabled     ? 0 : c->settings.vehicle.max_ships;    break;
+		case VEH_AIRCRAFT: max_veh = _settings_game.vehicle.aircraft_type_isdisabled ? 0 : c->settings.vehicle.max_aircraft; break;
 		default: NOT_REACHED();
 	}
-
-	const Company *c = Company::Get(_current_company);
 	if (c->group_all[type].num_vehicle >= max_veh) return UINT16_MAX; // Currently already at the limit, no room to make a new one.
 
-	return c->freeunits[type].NextID();
+	switch (type) {
+		case VEH_TRAIN:
+			if (subtype == EC_STEAM && c->settings.vehicle.max_steam_engine_isenabled) {
+				max_veh = c->settings.vehicle.max_steam_engine_trains;
+			} else if (subtype == EC_DIESEL && c->settings.vehicle.max_diesel_engine_isenabled) {
+				max_veh = c->settings.vehicle.max_diesel_engine_trains;
+			} else if (subtype == EC_ELECTRIC && c->settings.vehicle.max_electric_engine_isenabled) {
+				max_veh = c->settings.vehicle.max_electric_engine_trains;
+			} else if (subtype == EC_MONORAIL && c->settings.vehicle.max_monorail_engine_isenabled) {
+				max_veh = c->settings.vehicle.max_monorail_engine_trains;
+			} else if (subtype == EC_MAGLEV && c->settings.vehicle.max_maglev_engine_isenabled) {
+				max_veh = c->settings.vehicle.max_maglev_engine_trains;
+			} else {
+				return c->freeunits[type].NextID();
+			}
+			if (GetTrainSubtypeNumber(_current_company, (EngineClass) subtype) >= max_veh) {
+				return UINT16_MAX;
+			} else {
+				return c->freeunits[type].NextID();
+			}
+			break;
+		case VEH_ROAD:
+			if (IsCargoInClass(subtype, CC_PASSENGERS) && c->settings.vehicle.max_bus_type_isenabled) {
+				max_veh = c->settings.vehicle.max_roadveh_buses;
+				if (GetRoadVehBusNumber(_current_company) >= max_veh) {
+					return UINT16_MAX;
+				} else {
+					return c->freeunits[type].NextID();
+				}
+			} else if (!IsCargoInClass(subtype, CC_PASSENGERS) && c->settings.vehicle.max_truck_type_isenabled) {
+				max_veh = c->settings.vehicle.max_roadveh_trucks;
+				if (c->group_all[type].num_vehicle - GetRoadVehBusNumber(_current_company) >= max_veh) {
+					return UINT16_MAX;
+				} else {
+					return c->freeunits[type].NextID();
+				}
+			} else {
+				return c->freeunits[type].NextID();
+			}
+			break;
+		case VEH_AIRCRAFT:
+			if (subtype == AIR_HELICOPTER && c->settings.vehicle.max_helicopter_type_isenabled) {
+				max_veh = c->settings.vehicle.max_helicopters;
+				if (GetHelicopterNumber(_current_company) >= max_veh) {
+					return UINT16_MAX;
+				} else {
+					return c->freeunits[type].NextID();
+				}
+			} else if (subtype == AIR_AIRCRAFT && c->settings.vehicle.max_airplane_type_isenabled) {
+				max_veh = c->settings.vehicle.max_airplanes;
+				if (c->group_all[type].num_vehicle - GetHelicopterNumber(_current_company) >= max_veh) {
+					return UINT16_MAX;
+				} else {
+					return c->freeunits[type].NextID();
+				}
+			} else {
+				return c->freeunits[type].NextID();
+			}
+			break;
+		default:
+			return c->freeunits[type].NextID();
+	}
 }
 
 
@@ -1925,15 +2041,21 @@ bool CanBuildVehicleInfrastructure(VehicleType type, uint8_t subtype)
 	UnitID max;
 	switch (type) {
 		case VEH_TRAIN:
-			if (!HasAnyRailTypesAvail(_local_company)) return false;
-			max = _settings_game.vehicle.max_trains;
+			if (!HasAnyRailTypesAvail(_local_company) || _settings_game.vehicle.train_type_isdisabled) return false;
+			max = Company::Get(_local_company)->settings.vehicle.max_trains;
 			break;
 		case VEH_ROAD:
-			if (!HasAnyRoadTypesAvail(_local_company, (RoadTramType)subtype)) return false;
-			max = _settings_game.vehicle.max_roadveh;
+			if (!HasAnyRoadTypesAvail(_local_company, (RoadTramType)subtype) || _settings_game.vehicle.roadveh_type_isdisabled) return false;
+			max = Company::Get(_local_company)->settings.vehicle.max_roadveh;
 			break;
-		case VEH_SHIP:     max = _settings_game.vehicle.max_ships; break;
-		case VEH_AIRCRAFT: max = _settings_game.vehicle.max_aircraft; break;
+		case VEH_SHIP:
+			if (_settings_game.vehicle.ship_type_isdisabled) return false;
+			max = Company::Get(_local_company)->settings.vehicle.max_ships;
+			break;
+		case VEH_AIRCRAFT:
+			if (_settings_game.vehicle.aircraft_type_isdisabled) return false;
+			max = Company::Get(_local_company)->settings.vehicle.max_aircraft;
+			break;
 		default: NOT_REACHED();
 	}
 

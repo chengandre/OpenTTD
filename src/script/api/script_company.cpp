@@ -368,3 +368,102 @@
 
 	return (ScriptCompany::Colours)c->livery[scheme].colour2;
 }
+
+/* static */ bool ScriptCompany::SetSteamEngineLimitation(uint16_t limit)
+{
+	EnforcePrecondition(false, limit >= 0);
+	EnforcePrecondition(false, limit <= 5000);
+	return ScriptObject::Command<CMD_CHANGE_COMPANY_SETTING>::Do("company.vehicle.max_diesel_engine_trains", limit);
+}
+
+/* static */ bool ScriptCompany::SetDieselEngineLimitation(uint16_t limit)
+{
+	EnforcePrecondition(false, limit >= 0);
+	EnforcePrecondition(false, limit <= 5000);
+	return ScriptObject::Command<CMD_CHANGE_COMPANY_SETTING>::Do("company.vehicle.max_diesel_engine_trains", limit);
+}
+
+/* static */ bool ScriptCompany::SetElectricEngineLimitation(uint16_t limit)
+{
+	EnforcePrecondition(false, limit >= 0);
+	EnforcePrecondition(false, limit <= 5000);
+	return ScriptObject::Command<CMD_CHANGE_COMPANY_SETTING>::Do("company.vehicle.max_electric_engine_trains", limit);
+}
+
+/* static */ bool ScriptCompany::SetMaglevEngineLimitation(uint16_t limit)
+{
+	EnforcePrecondition(false, limit >= 0);
+	EnforcePrecondition(false, limit <= 5000);
+	return ScriptObject::Command<CMD_CHANGE_COMPANY_SETTING>::Do("company.vehicle.max_maglev_engine_trains", limit);
+}
+
+/* static */ bool ScriptCompany::SetMonorailEngineLimitation(uint16_t limit)
+{
+	EnforcePrecondition(false, limit >= 0);
+	EnforcePrecondition(false, limit <= 5000);
+	return ScriptObject::Command<CMD_CHANGE_COMPANY_SETTING>::Do("company.vehicle.max_monorail_engine_trains", limit);
+}
+
+/* static */ bool ScriptCompany::ToggleSteamEngineLimitation(bool value) {
+	return ScriptObject::Command<CMD_CHANGE_COMPANY_SETTING>::Do("company.vehicle.max_steam_engine_isenabled", value);
+}
+
+/* static */ bool ScriptCompany::ToggleDieselEngineLimitation(bool value) {
+	return ScriptObject::Command<CMD_CHANGE_COMPANY_SETTING>::Do("company.vehicle.max_diesel_engine_isenabled", value);
+}
+
+/* static */ bool ScriptCompany::ToggleElectricEngineLimitation(bool value) {
+	return ScriptObject::Command<CMD_CHANGE_COMPANY_SETTING>::Do("company.vehicle.max_electric_engine_isenabled", value);
+}
+
+/* static */ bool ScriptCompany::ToggleMonorailEngineLimitation(bool value) {
+	return ScriptObject::Command<CMD_CHANGE_COMPANY_SETTING>::Do("company.vehicle.max_monorail_engine_isenabled", value);
+}
+
+/* static */ bool ScriptCompany::ToggleMaglevEngineLimitation(bool value) {
+	return ScriptObject::Command<CMD_CHANGE_COMPANY_SETTING>::Do("company.vehicle.max_maglev_engine_isenabled", value);
+}
+
+/* static */ bool ScriptCompany::SetBusLimitation(uint16_t limit)
+{
+	EnforcePrecondition(false, limit >= 0);
+	EnforcePrecondition(false, limit <= 5000);
+	return ScriptObject::Command<CMD_CHANGE_COMPANY_SETTING>::Do("company.vehicle.max_roadveh_buses", limit);
+}
+
+/* static */ bool ScriptCompany::SetTruckLimitation(uint16_t limit)
+{
+	EnforcePrecondition(false, limit >= 0);
+	EnforcePrecondition(false, limit <= 5000);
+	return ScriptObject::Command<CMD_CHANGE_COMPANY_SETTING>::Do("company.vehicle.max_roadveh_trucks", limit);
+}
+
+/* static */ bool ScriptCompany::SetHelicopterLimitation(uint16_t limit)
+{
+	EnforcePrecondition(false, limit >= 0);
+	EnforcePrecondition(false, limit <= 5000);
+	return ScriptObject::Command<CMD_CHANGE_COMPANY_SETTING>::Do("company.vehicle.max_helicopters", limit);
+}
+
+/* static */ bool ScriptCompany::SetAirplaneLimitation(uint16_t limit)
+{
+	EnforcePrecondition(false, limit >= 0);
+	EnforcePrecondition(false, limit <= 5000);
+	return ScriptObject::Command<CMD_CHANGE_COMPANY_SETTING>::Do("company.vehicle.max_airplanes", limit);
+}
+
+/* static */ bool ScriptCompany::ToggleBusLimitation(bool value) {
+	return ScriptObject::Command<CMD_CHANGE_COMPANY_SETTING>::Do("company.vehicle.max_bus_type_isenabled", value);
+}
+
+/* static */ bool ScriptCompany::ToggleTruckLimitation(bool value) {
+	return ScriptObject::Command<CMD_CHANGE_COMPANY_SETTING>::Do("company.vehicle.max_truck_type_isenabled", value);
+}
+
+/* static */ bool ScriptCompany::ToggleHelicopterLimitation(bool value) {
+	return ScriptObject::Command<CMD_CHANGE_COMPANY_SETTING>::Do("company.vehicle.max_helicopter_type_isenabled", value);
+}
+
+/* static */ bool ScriptCompany::ToggleAirplaneLimitation(bool value) {
+	return ScriptObject::Command<CMD_CHANGE_COMPANY_SETTING>::Do("company.vehicle.max_airplane_type_isenabled", value);
+}

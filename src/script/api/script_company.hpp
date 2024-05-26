@@ -448,6 +448,134 @@ public:
 	 * @return Secondary colour of livery.
 	 */
 	static ScriptCompany::Colours GetSecondaryLiveryColour(LiveryScheme scheme);
+
+	/**
+	 * Set steam engine purchase limitation for your company.
+	 * @param limit Limit to set.
+	 * @return False if unable to set steam engine limitation
+	 */
+	static bool SetSteamEngineLimitation(uint16_t limit);
+
+	/**
+	 * Set diesel engine purchase limitation for your company.
+	 * @param limit Limit to set.
+	 * @return False if unable to set diesel engine limitation
+	 */
+	static bool SetDieselEngineLimitation(uint16_t limit);
+
+	/**
+	 * Set electric engine purchase limitation for your company.
+	 * @param limit Limit to set.
+	 * @return False if unable to set electric engine limitation
+	 */
+	static bool SetElectricEngineLimitation(uint16_t limit);
+
+	/**
+	 * Set monorail engine purchase limitation for your company.
+	 * @param limit Limit to set.
+	 * @return False if unable to set monorail engine limitation
+	 */
+	static bool SetMonorailEngineLimitation(uint16_t limit);
+
+	/**
+	 * Set maglev engine purchase limitation for your company.
+	 * @param limit Limit to set.
+	 * @return False if unable to set maglev engine limitation
+	 */
+	static bool SetMaglevEngineLimitation(uint16_t limit);
+
+	/**
+	 * Toggle steam engine purchase limitation for your company.
+	 * @param value toggle limitation
+	 * @return False if unable to toggle steam engine limitation
+	 */
+	static bool ToggleSteamEngineLimitation(bool value);
+
+	/**
+	 * Toggle diesel engine purchase limitation for your company.
+	 * @param value toggle limitation
+	 * @return False if unable to toggle diesel engine limitation
+	 */
+	static bool ToggleDieselEngineLimitation(bool value);
+
+	/**
+	 * Toggle electric engine purchase limitation for your company.
+	 * @param value toggle limitation
+	 * @return False if unable to toggle electric engine limitation
+	 */
+	static bool ToggleElectricEngineLimitation(bool value);
+
+	/**
+	 * Toggle monorail engine purchase limitation for your company.
+	 * @param value toggle limitation
+	 * @return False if unable to toggle monorail engine limitation
+	 */
+	static bool ToggleMonorailEngineLimitation(bool value);
+
+	/**
+	 * Toggle maglev engine purchase limitation for your company.
+	 * @param value toggle limitation
+	 * @return False if unable to toggle maglev engine limitation
+	 */
+	static bool ToggleMaglevEngineLimitation(bool value);
+
+	/**
+	 * Set bus purchase limitation for your company.
+	 * @param limit Limit to set.
+	 * @return False if unable to set bus limitation
+	 */
+	static bool SetBusLimitation(uint16_t limit);
+
+	/**
+	 * Set truck purchase limitation for your company.
+	 * @param limit Limit to set.
+	 * @return False if unable to set truck limitation
+	 */
+	static bool SetTruckLimitation(uint16_t limit);
+
+	/**
+	 * Set helicopter purchase limitation for your company.
+	 * @param limit Limit to set.
+	 * @return False if unable to set helicopter limitation
+	 */
+	static bool SetHelicopterLimitation(uint16_t limit);
+
+	/**
+	 * Set airplane purchase limitation for your company.
+	 * @param limit Limit to set.
+	 * @return False if unable to set airplane limitation
+	 */
+	static bool SetAirplaneLimitation(uint16_t limit);
+
+	// TOGGLE
+	/**
+	 * Toggle bus purchase limitation for your company.
+	 * @param value toggle limitation
+	 * @return False if unable to toggle bus limitation
+	 */
+	static bool ToggleBusLimitation(bool value);
+
+	/**
+	 * Toggle truck purchase limitation for your company.
+	 * @param value toggle limitation
+	 * @return False if unable to toggle truck limitation
+	 */
+	static bool ToggleTruckLimitation(bool value);
+
+	/**
+	 * Toggle helicopter purchase limitation for your company.
+	 * @param value toggle limitation
+	 * @return False if unable to toggle helicopter limitation
+	 */
+	static bool ToggleHelicopterLimitation(bool value);
+
+	/**
+	 * Toggle airplane purchase limitation for your company.
+	 * @param value toggle limitation
+	 * @return False if unable to toggle airplane limitation
+	 */
+	static bool ToggleAirplaneLimitation(bool value);
+
 };
 
 DECLARE_POSTFIX_INCREMENT(ScriptCompany::CompanyID)

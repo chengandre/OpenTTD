@@ -677,12 +677,25 @@ bool CheckTakeoverVehicleLimit(CompanyID cbig, CompanyID csmall)
 {
 	const Company *c1 = Company::Get(cbig);
 	const Company *c2 = Company::Get(csmall);
+	const VehicleDefaultSettings vds = c1->settings.vehicle;
 
 	/* Do the combined vehicle counts stay within the limits? */
-	return c1->group_all[VEH_TRAIN].num_vehicle + c2->group_all[VEH_TRAIN].num_vehicle <= _settings_game.vehicle.max_trains &&
-		c1->group_all[VEH_ROAD].num_vehicle     + c2->group_all[VEH_ROAD].num_vehicle     <= _settings_game.vehicle.max_roadveh &&
-		c1->group_all[VEH_SHIP].num_vehicle     + c2->group_all[VEH_SHIP].num_vehicle     <= _settings_game.vehicle.max_ships &&
-		c1->group_all[VEH_AIRCRAFT].num_vehicle + c2->group_all[VEH_AIRCRAFT].num_vehicle <= _settings_game.vehicle.max_aircraft;
+	return GetTrainSubtypeNumber(cbig, EC_STEAM)       + GetTrainSubtypeNumber(csmall, EC_STEAM)    <= (vds.max_steam_engine_isenabled    ? UINT16_MAX : vds.max_steam_engine_trains) &&
+		GetTrainSubtypeNumber(cbig, EC_DIESEL)      + GetTrainSubtypeNumber(csmall, EC_DIESEL)   <= (vds.max_diesel_engine_isenabled   ? UINT16_MAX : vds.max_diesel_engine_trains) &&
+		GetTrainSubtypeNumber(cbig, EC_ELECTRIC)    + GetTrainSubtypeNumber(csmall, EC_ELECTRIC) <= (vds.max_electric_engine_isenabled ? UINT16_MAX : vds.max_electric_engine_trains) &&
+		GetTrainSubtypeNumber(cbig, EC_MONORAIL)    + GetTrainSubtypeNumber(csmall, EC_MONORAIL) <= (vds.max_monorail_engine_isenabled ? UINT16_MAX : vds.max_monorail_engine_trains) &&
+		GetTrainSubtypeNumber(cbig, EC_MAGLEV)      + GetTrainSubtypeNumber(csmall, EC_MAGLEV)   <= (vds.max_maglev_engine_isenabled   ? UINT16_MAX : vds.max_maglev_engine_trains) &&
+		GetRoadVehBusNumber(cbig)                   +   GetRoadVehBusNumber(csmall)              <= (vds.max_bus_type_isenabled        ? UINT16_MAX : vds.max_roadveh_buses) &&
+		GetRoadVehTruckNumber(cbig)                 + GetRoadVehTruckNumber(csmall)              <= (vds.max_truck_type_isenabled      ? UINT16_MAX : vds.max_roadveh_trucks) &&
+		GetHelicopterNumber(cbig)                   +   GetHelicopterNumber(csmall)              <= (vds.max_helicopter_type_isenabled ? UINT16_MAX : vds.max_helicopters) &&
+		GetAirplaneNumber(cbig)                     +     GetAirplaneNumber(csmall)              <= (vds.max_airplane_type_isenabled   ? UINT16_MAX : vds.max_airplanes) &&
+
+		!_settings_game.vehicle.train_type_isdisabled   && !_settings_game.vehicle.roadveh_type_isdisabled  &&
+		!_settings_game.vehicle.ship_type_isdisabled    && !_settings_game.vehicle.aircraft_type_isdisabled &&
+		c1->group_all[VEH_TRAIN].num_vehicle            + c2->group_all[VEH_TRAIN].num_vehicle      <= c1->settings.vehicle.max_trains   &&
+		c1->group_all[VEH_ROAD].num_vehicle             + c2->group_all[VEH_ROAD].num_vehicle       <= c1->settings.vehicle.max_roadveh  &&
+		c1->group_all[VEH_SHIP].num_vehicle             + c2->group_all[VEH_SHIP].num_vehicle       <= c1->settings.vehicle.max_ships    &&
+		c1->group_all[VEH_AIRCRAFT].num_vehicle         + c2->group_all[VEH_AIRCRAFT].num_vehicle   <= c1->settings.vehicle.max_aircraft;
 }
 
 /**

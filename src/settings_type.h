@@ -484,14 +484,14 @@ struct VehicleSettings {
 	uint8_t  roadveh_slope_steepness;          ///< Steepness of hills for road vehicles when using realistic acceleration
 	bool   wagon_speed_limits;               ///< enable wagon speed limits
 	bool   disable_elrails;                  ///< when true, the elrails are disabled
-	UnitID max_trains;                       ///< max trains in game per company
-	UnitID max_roadveh;                      ///< max trucks in game per company
-	UnitID max_aircraft;                     ///< max planes in game per company
-	UnitID max_ships;                        ///< max ships in game per company
 	uint8_t  plane_speed;                      ///< divisor for speed of aircraft
 	uint8_t  freight_trains;                   ///< value to multiply the weight of cargo by
 	bool   dynamic_engines;                  ///< enable dynamic allocation of engine data
 	bool   never_expire_vehicles;            ///< never expire vehicles
+	bool   train_type_isdisabled;            ///< train cannot be purchased
+	bool   roadveh_type_isdisabled;          ///< road vehicles cannot be purchased
+	bool   aircraft_type_isdisabled;         ///< aircraft cannot be purchased
+	bool   ship_type_isdisabled;             ///< sgips cannot be purchased
 	uint8_t extend_vehicle_life;              ///< extend vehicle life by this many years
 	uint8_t road_side;                        ///< the side of the road vehicles drive on
 	uint8_t  plane_crashes;                    ///< number of plane crashes, 0 = none, 1 = reduced, 2 = normal
@@ -565,6 +565,28 @@ struct VehicleDefaultSettings {
 	uint16_t servint_roadveh;                  ///< service interval for road vehicles
 	uint16_t servint_aircraft;                 ///< service interval for aircraft
 	uint16_t servint_ships;                    ///< service interval for ships
+	UnitID max_trains;                       ///< max trains in game per company
+	UnitID max_steam_engine_trains;          ///< max train with steam engine in game per company
+	UnitID max_diesel_engine_trains;         ///< max train with diesel engine in game per company
+	UnitID max_electric_engine_trains;       ///< max train with electric engine in game per company
+	UnitID max_monorail_engine_trains;       ///< max train with monorail engine in game per company
+	UnitID max_maglev_engine_trains;         ///< max train with maglev engine in game per company
+	UnitID max_roadveh;                      ///< max trucks in game per company
+	UnitID max_roadveh_trucks;               ///< max trucks in game per company
+	UnitID max_roadveh_buses;                ///< max buses in game per company
+	UnitID max_aircraft;                     ///< max planes in game per company
+	UnitID max_airplanes;                    ///< max airplanes in game per company
+	UnitID max_helicopters;                  ///< max helicopter in game per company
+	UnitID max_ships;                        ///< max ships in game per company
+	bool max_steam_engine_isenabled;         ///< max steam engines limitation is enabled
+	bool max_diesel_engine_isenabled;        ///< max diesel engines limitation is enabled
+	bool max_electric_engine_isenabled;      ///< max electric engines limitation is enabled
+	bool max_monorail_engine_isenabled;      ///< max monorail engines limitation is enabled
+	bool max_maglev_engine_isenabled;        ///< max maglev engines limitation is enabled
+	bool max_truck_type_isenabled;           ///< max trucks limitation is enabled
+	bool max_bus_type_isenabled;             ///< max buses limitation is enabled
+	bool max_airplane_type_isenabled;        ///< max airplanes limitation is enabled
+	bool max_helicopter_type_isenabled;      ///< max helicopter limitation is enabled
 };
 
 /** Settings that can be set per company. */

@@ -2096,6 +2096,28 @@ static SettingsContainer &GetSettingsTree()
 			company->Add(new SettingEntry("vehicle.servint_roadveh"));
 			company->Add(new SettingEntry("vehicle.servint_ships"));
 			company->Add(new SettingEntry("vehicle.servint_aircraft"));
+			company->Add(new SettingEntry("vehicle.max_trains"));
+			company->Add(new SettingEntry("vehicle.max_steam_engine_isenabled"));
+			company->Add(new SettingEntry("vehicle.max_steam_engine_trains"));
+			company->Add(new SettingEntry("vehicle.max_diesel_engine_isenabled"));
+			company->Add(new SettingEntry("vehicle.max_diesel_engine_trains"));
+			company->Add(new SettingEntry("vehicle.max_electric_engine_isenabled"));
+			company->Add(new SettingEntry("vehicle.max_electric_engine_trains"));
+			company->Add(new SettingEntry("vehicle.max_monorail_engine_isenabled"));
+			company->Add(new SettingEntry("vehicle.max_monorail_engine_trains"));
+			company->Add(new SettingEntry("vehicle.max_maglev_engine_isenabled"));
+			company->Add(new SettingEntry("vehicle.max_maglev_engine_trains"));
+			company->Add(new SettingEntry("vehicle.max_roadveh"));
+			company->Add(new SettingEntry("vehicle.max_truck_type_isenabled"));
+			company->Add(new SettingEntry("vehicle.max_roadveh_trucks"));
+			company->Add(new SettingEntry("vehicle.max_bus_type_isenabled"));
+			company->Add(new SettingEntry("vehicle.max_roadveh_buses"));
+			company->Add(new SettingEntry("vehicle.max_aircraft"));
+			company->Add(new SettingEntry("vehicle.max_airplane_type_isenabled"));
+			company->Add(new SettingEntry("vehicle.max_airplanes"));
+			company->Add(new SettingEntry("vehicle.max_helicopter_type_isenabled"));
+			company->Add(new SettingEntry("vehicle.max_helicopters"));
+			company->Add(new SettingEntry("vehicle.max_ships"));
 		}
 
 		SettingsPage *accounting = main->Add(new SettingsPage(STR_CONFIG_SETTING_ACCOUNTING));
@@ -2153,10 +2175,10 @@ static SettingsContainer &GetSettingsTree()
 			limitations->Add(new SettingEntry("construction.max_tunnel_length"));
 			limitations->Add(new SettingEntry("station.never_expire_airports"));
 			limitations->Add(new SettingEntry("vehicle.never_expire_vehicles"));
-			limitations->Add(new SettingEntry("vehicle.max_trains"));
-			limitations->Add(new SettingEntry("vehicle.max_roadveh"));
-			limitations->Add(new SettingEntry("vehicle.max_aircraft"));
-			limitations->Add(new SettingEntry("vehicle.max_ships"));
+			limitations->Add(new SettingEntry("vehicle.train_type_isdisabled"));
+			limitations->Add(new SettingEntry("vehicle.roadveh_type_isdisabled"));
+			limitations->Add(new SettingEntry("vehicle.aircraft_type_isdisabled"));
+			limitations->Add(new SettingEntry("vehicle.ship_type_isdisabled"));
 			limitations->Add(new SettingEntry("vehicle.max_train_length"));
 			limitations->Add(new SettingEntry("station.station_spread"));
 			limitations->Add(new SettingEntry("station.distant_join_stations"));
